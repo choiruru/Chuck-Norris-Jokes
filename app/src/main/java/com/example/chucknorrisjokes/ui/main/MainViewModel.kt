@@ -1,5 +1,6 @@
 package com.example.chucknorrisjokes.ui.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.chucknorrisjokes.data.remote.model.ModelJoke
 import com.example.chucknorrisjokes.domain.repository.JokeRepository
@@ -25,7 +26,9 @@ class MainViewModel @Inject constructor(
                 it.color = Random.nextInt(9)
                 joke.postValue(it)
                 networkState(NetworkState.LOADED)
-            }, { handleError(it) })
+            }, {
+                handleError(it)
+            })
 
         lastDisposable?.let { compositeDisposable.add(it) }
 

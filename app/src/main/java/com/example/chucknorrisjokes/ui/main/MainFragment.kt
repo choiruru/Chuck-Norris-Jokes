@@ -14,10 +14,12 @@ import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentMainBinding
 import com.example.chucknorrisjokes.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.lyt_offline.*
 import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
 class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainViewModel>(){
+    private val TAG = "MainFragment"
 
     override fun getViewModelClass(): Class<MainViewModel> {
         return MainViewModel::class.java
@@ -27,15 +29,17 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
         return R.layout.fragment_main
     }
 
-    override fun getBRVariableId(): Int {
-        return BR.data
-    }
-
     override fun onViewReady(savedInstance: Bundle?) {
         viewModel.getRandomJoke()
+        binding.setVariable(BR.data, viewModel)
         btnShare.setOnClickListener {
             shareImage(cardJoke)
         }
+        btnRetry.setOnClickListener {
+            viewModel.getRandomJoke()
+        }
+
+        context.setSupportActionBar(toolbar);
     }
     private fun shareImage(view:View){
         val bitmap:Bitmap = getBitmapFromView(view)

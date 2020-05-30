@@ -1,5 +1,6 @@
 package com.example.chucknorrisjokes.presentation.base
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.chucknorrisjokes.data.remote.base.Failure
 import com.example.chucknorrisjokes.data.remote.base.StatusCode
@@ -9,6 +10,7 @@ import io.reactivex.disposables.Disposable
 
 
 abstract class BaseViewModel : ViewModel() {
+    private val TAG = "BaseViewModel"
 
     protected var lastDisposable: Disposable? = null
 
@@ -47,6 +49,7 @@ abstract class BaseViewModel : ViewModel() {
         } else {
             NetworkState.error(Failure(StatusCode.UNKNOWN_ERROR,"There is unknown error"))
         }
+        Log.d(TAG, "Error: "+error.toString());
         _networkState.postValue(error)
     }
 

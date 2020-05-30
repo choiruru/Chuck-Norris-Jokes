@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="c_bg_offline">#E6E6E6</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="random1">#ec823a</color>
     <color name="random2">#3da4ab</color>

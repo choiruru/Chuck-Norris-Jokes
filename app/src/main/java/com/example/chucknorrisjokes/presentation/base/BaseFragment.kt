@@ -27,8 +27,6 @@ abstract class BaseFragment<B : ViewDataBinding, V : ViewModel> : DaggerFragment
     @LayoutRes
     protected abstract fun getLayoutId(): Int
 
-    protected abstract fun getBRVariableId(): Int
-
     protected abstract fun onViewReady(savedInstance: Bundle?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +42,6 @@ abstract class BaseFragment<B : ViewDataBinding, V : ViewModel> : DaggerFragment
         mViewModel = ViewModelProvider(this, viewModelFactory).get(getViewModelClass())
         mViewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mViewDataBinding.lifecycleOwner = this
-        mViewDataBinding.setVariable(getBRVariableId(),mViewModel)
         mViewDataBinding.executePendingBindings()
         return mViewDataBinding.root
     }

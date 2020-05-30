@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Chuck Norris Jokes</string>
     <string name="jokes_on_you">Jokes on You</string>
+    <string name="oops">Oops..!</string>
+    <string name="retry">Retry</string>
+    <string name="share_this_joke">Share this joke</string>
+    <string name="i_want_another_joke">I want another joke</string>
 </resources>
