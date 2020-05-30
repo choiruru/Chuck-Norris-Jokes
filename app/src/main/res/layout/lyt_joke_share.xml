@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bgColor"
+            type="Integer" />
+
+        <variable
+            name="textJoke"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lytShare"
+            lyt_color="@{bgColor}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="16dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lytShareConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgLogoShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_chucknorris_logo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/lytShareConstraint"
+                    app:layout_constraintBottom_toTopOf="@id/textViewShare"
+                    app:layout_constraintHeight_percent="0.25"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/textViewShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:text="@{textJoke}"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:autoSizeMaxTextSize="40sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgLogoShare"
+                    app:layout_constraintHeight_percent="0.6"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -21,7 +21,7 @@ class SplashViewModel @Inject constructor(): BaseViewModel() {
     lateinit var disposable:Disposable
 
     fun countSplash(){
-        disposable = Observable.timer(3, TimeUnit.SECONDS)
+        disposable = Observable.timer(1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{
                 _complete.value = SingleEvents(true)

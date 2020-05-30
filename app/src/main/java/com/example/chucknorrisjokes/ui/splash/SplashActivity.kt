@@ -19,7 +19,7 @@ class SplashActivity : BaseActivity<ActivitySplahBinding>() {
     }
 
     override fun onViewReady(savedInstance: Bundle?) {
-        viewModel = ViewModelProvider(this as SplashActivity,viewModelFactory).get(SplashViewModel::class.java)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(SplashViewModel::class.java)
         viewModel.countSplash()
         viewModel.complete.observe(this, Observer {
             val intent = Intent(this, MainActivity::class.java)

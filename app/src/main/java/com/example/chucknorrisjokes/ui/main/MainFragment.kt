@@ -13,7 +13,10 @@ import com.example.chucknorrisjokes.BR
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentMainBinding
 import com.example.chucknorrisjokes.presentation.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_main.btnShare
+import kotlinx.android.synthetic.main.fragment_main.toolbar
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.lyt_joke_share.*
 import kotlinx.android.synthetic.main.lyt_offline.*
 import java.io.ByteArrayOutputStream
 import javax.inject.Inject
@@ -33,13 +36,13 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
         viewModel.getRandomJoke()
         binding.setVariable(BR.data, viewModel)
         btnShare.setOnClickListener {
-            shareImage(cardJoke)
+            shareImage(lytShare)
         }
         btnRetry.setOnClickListener {
             viewModel.getRandomJoke()
         }
 
-        context.setSupportActionBar(toolbar);
+        (activity as MainActivity).setSupportActionBar(toolbar);
     }
     private fun shareImage(view:View){
         val bitmap:Bitmap = getBitmapFromView(view)
