@@ -3,4 +3,28 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="random1">#ec823a</color>
+    <color name="random2">#3da4ab</color>
+    <color name="random3">#ff847c</color>
+    <color name="random4">#1b6ca8</color>
+    <color name="random5">#efb960</color>
+    <color name="random6">#0e9aa7</color>
+    <color name="random7">#ff9a76</color>
+    <color name="random8">#f96d80</color>
+    <color name="random9">#bb596b</color>
+    <color name="random0">#679b9b</color>
+
+    <array name="pallete">
+        <item>@color/random1</item>
+        <item>@color/random2</item>
+        <item>@color/random3</item>
+        <item>@color/random4</item>
+        <item>@color/random5</item>
+        <item>@color/random6</item>
+        <item>@color/random7</item>
+        <item>@color/random8</item>
+        <item>@color/random9</item>
+        <item>@color/random0</item>
+    </array>
 </resources>

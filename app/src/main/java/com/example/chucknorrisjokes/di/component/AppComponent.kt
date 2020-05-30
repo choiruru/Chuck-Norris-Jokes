@@ -8,17 +8,21 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import dagger.android.support.DaggerApplication
 
 @ApplicationScope
 @Component(modules = [
-    AndroidSupportInjectionModule::class,
     ActivityModule::class,
+    FragmentModule::class,
     AppModule::class,
     NetworkModule::class,
     RepositoryModule::class,
-    ViewModelModule::class
+    ViewModelModule::class,
+    AndroidSupportInjectionModule::class
 ])
-interface AppComponent : AndroidInjector<NorrisApp> {
+interface AppComponent : AndroidInjector<DaggerApplication?> {
+
+    fun inject(application: NorrisApp)
 
     @Component.Builder
     interface Builder {
