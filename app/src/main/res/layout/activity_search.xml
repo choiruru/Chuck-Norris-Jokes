@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.chucknorrisjokes.presentation.exception.Status"/>
+        <import type="com.example.chucknorrisjokes.presentation.exception.DataStatus"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.chucknorrisjokes.ui.search.SearchViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:elevation="@dimen/z_app_bar"
+                android:outlineProvider="bounds"
+                android:theme="@style/SearchViewTheme"
+                android:transitionGroup="false"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/colorPrimary" />
+
+                <SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/padding_normal"
+                    android:iconifiedByDefault="false"
+                    android:transitionGroup="true"
+                    tools:ignore="RtlCompat" />
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/padding_micro"
+                    tools:ignore="RtlCompat,RtlSymmetry">
+
+                    <ImageView
+                        android:id="@+id/search_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_baseline_arrow_back"
+                        android:transitionName="@string/transition_search_back"
+                        tools:ignore="contentDescription"
+                        android:layout_marginLeft="14dp"/>
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJokes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{(viewModel.networkState.status==Status.SUCCESS &amp;&amp; viewModel.dataStatus == DataStatus.NOT_EMPTY) ?View.VISIBLE:View.GONE}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="@string/empty_message"
+            android:background="@color/c_bg_offline"
+            android:textSize="20dp"
+            android:visibility="@{(viewModel.networkState.status==Status.SUCCESS &amp;&amp; viewModel.dataStatus == DataStatus.EMPTY) ?View.VISIBLE:View.GONE}"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:visibility="@{viewModel.networkState.status==Status.FAILED?View.VISIBLE:View.GONE}">
+            <include
+                android:id="@+id/lytOffline"
+                layout="@layout/lyt_offline"
+                app:network="@{viewModel.networkState.failure.msg}" />
+        </FrameLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.networkState.status==Status.LOADING?View.VISIBLE:View.GONE}"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

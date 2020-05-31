@@ -21,7 +21,7 @@ buildscript {
         cardVersion = '1.0.0'
         circleImgVersion = '3.0.1'
         coilVersion = '0.8.0'
-        constrainVersion = '2.0.0-beta3'
+        constrainVersion = '2.0.0-beta6'
         daggerVersion = '2.27'
         espressoVersion = "3.1.1"
         flexBoxVersion = "2.0.1"

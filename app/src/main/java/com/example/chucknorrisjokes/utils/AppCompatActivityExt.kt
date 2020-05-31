@@ -45,11 +45,3 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
         action()
     }.commit()
 }
-
-fun LinearLayout.setStyleBackgroundMain(style:Int){
-    if(style ==1){
-        this.setBackgroundResource(R.drawable.title_layout_bg_expand)
-    }else{
-        this.setBackgroundResource(R.drawable.title_layout_bg_collapse)
-    }
-}

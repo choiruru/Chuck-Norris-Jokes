@@ -1,6 +1,5 @@
 package com.example.chucknorrisjokes.ui.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -31,7 +30,6 @@ class MainCategoryAdapter @Inject constructor(
         if(models.value == null){
             return 0
         }
-        Log.d(TAG, "SIZE: "+ models.value!!.size)
         return models.value!!.size
     }
 

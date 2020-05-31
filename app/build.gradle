@@ -71,9 +71,9 @@ dependencies {
 //    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // MVVM and LiveData Dependencies
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 
     // Network Dependencies
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -88,12 +88,12 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    // Dependencies for utility
-    implementation "com.jakewharton.timber:timber:$timberVersion"
-
-    // Dependencies for UI
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+//    // Dependencies for utility
+//    implementation "com.jakewharton.timber:timber:$timberVersion"
+//
+//    // Dependencies for UI
+//    implementation "com.github.bumptech.glide:glide:$glideVersion"
+//    kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     // Dependencies for local unit tests
     testImplementation "org.mockito:mockito-core:$mockitoVersion"

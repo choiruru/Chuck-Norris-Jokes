@@ -109,7 +109,8 @@
             app:layout_constraintBottom_toBottomOf="@id/mainLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            app:visibilityMode="ignore">
 
             <CustomAttribute
                 app:attributeName="round_top_left"
@@ -119,6 +120,18 @@
                 app:attributeName="round_top_right"
                 app:customDimension="32dp"/>
         </Constraint>
+
+        <Constraint
+            android:id="@+id/imgSwipeArrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toTopOf="@id/title_layout"
+            app:layout_constraintBottom_toBottomOf="@id/title_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_baseline_double_arrow"
+            android:elevation="3dp"
+            android:rotation="-90"
+            android:layout_marginRight="32dp"/>
 
     </ConstraintSet>
 
@@ -215,7 +228,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/cardJoke"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            app:visibilityMode="ignore">
 
             <CustomAttribute
                 app:attributeName="round_top_left"
@@ -225,6 +239,17 @@
                 app:attributeName="round_top_right"
                 app:customDimension="0dp"/>
         </Constraint>
+        <Constraint
+            android:id="@+id/imgSwipeArrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toTopOf="@id/title_layout"
+            app:layout_constraintBottom_toBottomOf="@id/title_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_baseline_double_arrow"
+            android:elevation="3dp"
+            android:rotation="90"
+            android:layout_marginRight="32dp"/>
     </ConstraintSet>
 
 

@@ -25,12 +25,7 @@
             android:id="@+id/lytOffline"
             layout="@layout/lyt_offline"
             android:visibility="@{data.networkState.status==Status.FAILED?View.VISIBLE:View.GONE}"
-            app:network="@{data.networkState.failure.msg}"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:network="@{data.networkState.failure.msg}"/>
 
         <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/motion_base"
@@ -171,7 +166,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="true"/>
             </LinearLayout>
 
             <com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout
@@ -193,10 +190,23 @@
                     android:paddingTop="16dp"
                     android:paddingLeft="32dp"
                     android:paddingBottom="16dp"
-                    android:text="CATEGORY"
+                    android:text="SELECT CATEGORY"
                     android:textColor="@android:color/background_dark"
-                    android:textSize="22sp" />
+                    android:textSize="20sp" />
             </com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout>
+
+
+            <ImageView
+                android:id="@+id/imgSwipeArrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintTop_toTopOf="@id/title_layout"
+                app:layout_constraintBottom_toBottomOf="@id/title_layout"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_baseline_double_arrow"
+                android:tint="@android:color/background_dark"
+                android:elevation="3dp"
+                android:layout_marginRight="32dp"/>
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </FrameLayout>
