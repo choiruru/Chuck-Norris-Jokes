@@ -43,7 +43,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginBottom="307dp"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -175,34 +174,32 @@
                         android:id="@+id/textViewContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="32dp"
-                        android:paddingEnd="32dp"
-                        android:paddingBottom="32dp"
+                        android:padding="32dp"
                         android:text="@string/lorem_ipsum"/>
                 </androidx.core.widget.NestedScrollView>
             </LinearLayout>
 
-            <LinearLayout
+            <com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout
                 android:id="@+id/title_layout"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/title_layout_bg"
-                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/mainLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:gravity="center_vertical">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:orientation="vertical"
+                android:background="@drawable/txt_round">
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="24dp"
+                    android:padding="16dp"
                     android:text="CATEGORY"
                     android:textColor="@android:color/background_dark"
                     android:textSize="22sp" />
-            </LinearLayout>
+            </com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout>
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </FrameLayout>

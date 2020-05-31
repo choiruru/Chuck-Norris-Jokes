@@ -182,7 +182,7 @@
                 android:id="@+id/title_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/title_layout_bg"
+                android:background="@drawable/title_layout_bg_collapse"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/cardJoke"
                 android:gravity="center_vertical">

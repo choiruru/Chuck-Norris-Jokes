@@ -1,11 +1,14 @@
 package com.example.chucknorrisjokes.utils
 
+import android.graphics.drawable.GradientDrawable
+import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.chucknorrisjokes.R
 
 /**
  * The `fragment` is replaced to the container view with id `frameId`. The operation is
@@ -41,4 +44,12 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
     beginTransaction().apply {
         action()
     }.commit()
+}
+
+fun LinearLayout.setStyleBackgroundMain(style:Int){
+    if(style ==1){
+        this.setBackgroundResource(R.drawable.title_layout_bg_expand)
+    }else{
+        this.setBackgroundResource(R.drawable.title_layout_bg_collapse)
+    }
 }

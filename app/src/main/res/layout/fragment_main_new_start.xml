@@ -186,7 +186,7 @@
                 android:id="@+id/title_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/title_layout_bg"
+                android:background="@drawable/title_layout_bg_collapse"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/mainLayout"
                 app:layout_constraintEnd_toEndOf="parent"

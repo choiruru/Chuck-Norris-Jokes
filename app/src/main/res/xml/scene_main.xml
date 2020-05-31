@@ -2,9 +2,238 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ConstraintSet
+        android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/lytButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cardJoke"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <Constraint
+            android:id="@+id/imgLogo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_chucknorris_logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cardJoke"
+            app:layout_constraintBottom_toTopOf="@id/textView"
+            app:layout_constraintHeight_percent="0.1"
+            android:layout_marginTop="16dp"
+            android:elevation="1dp"/>
+
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@{data.joke.value}"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="40sp"
+            app:autoSizeTextType="uniform"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgLogo"
+            app:layout_constraintHeight_percent="0.28"
+            android:elevation="1dp"/>
+
+        <Constraint
+            android:id="@+id/cardJoke"
+            lyt_color="@{data.joke.color}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="16dp"
+
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/lytButton">
+            <CustomAttribute
+                app:attributeName="cardElevation"
+                app:customDimension="0dp"/>
+            <CustomAttribute
+                app:attributeName="radius"
+                app:customDimension="16dp"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/mainLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/content_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lytButton"/>
+
+        <Constraint
+            android:id="@+id/content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"/>
+
+        <Constraint
+            android:id="@+id/title_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/mainLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center_vertical">
+
+            <CustomAttribute
+                app:attributeName="round_top_left"
+                app:customDimension="32dp"/>
+
+            <CustomAttribute
+                app:attributeName="round_top_right"
+                app:customDimension="32dp"/>
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/end">
+
+        <Constraint
+            android:id="@id/toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cardJoke"
+            android:visibility="invisible"/>
+
+        <Constraint
+            android:id="@id/lytButton"
+            app:layout_constraintBottom_toBottomOf="@id/cardJoke"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"/>
+
+        <Constraint
+            android:id="@+id/cardJoke"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="16dp"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.25">
+            <CustomAttribute
+                app:attributeName="cardElevation"
+                app:customDimension="0dp"/>
+            <CustomAttribute
+                app:attributeName="radius"
+                app:customDimension="0dp"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/imgLogo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:elevation="1dp"
+            android:rotation="-90"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/textView"
+            app:layout_constraintTop_toTopOf="@id/cardJoke"
+            app:layout_constraintBottom_toBottomOf="@id/cardJoke"
+            app:layout_constraintWidth_percent="0.25"/>
+
+        <Constraint
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="40sp"
+            app:autoSizeTextType="uniform"
+            android:elevation="1dp"
+            app:layout_constraintLeft_toRightOf="@id/imgLogo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cardJoke"
+            app:layout_constraintHeight_percent="0.21"/>
+
+        <Constraint
+            android:id="@+id/mainLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/content_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lytButton"
+            android:visibility="gone"/>
+
+        <Constraint
+            android:id="@+id/content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/title_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <Constraint
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cardJoke"
+            android:gravity="center_vertical">
+
+            <CustomAttribute
+                app:attributeName="round_top_left"
+                app:customDimension="0dp"/>
+
+            <CustomAttribute
+                app:attributeName="round_top_right"
+                app:customDimension="0dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+
+
+
+<!--======================================TRANSITION=============================================-->
     <Transition
-        app:constraintSetEnd="@layout/fragment_main_new_end"
-        app:constraintSetStart="@layout/fragment_main_new_start"
+        app:constraintSetStart="@id/start"
+        app:constraintSetEnd="@id/end"
         app:duration="100">
 
         <OnSwipe app:touchAnchorSide="top"
