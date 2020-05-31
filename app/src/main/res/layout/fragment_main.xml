@@ -43,9 +43,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextColor="@color/white"
 
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -167,16 +168,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent">
 
-                <androidx.core.widget.NestedScrollView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:id="@+id/textViewContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="32dp"
-                        android:text="@string/lorem_ipsum"/>
-                </androidx.core.widget.NestedScrollView>
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
             <com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout
@@ -195,7 +190,9 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="32dp"
+                    android:paddingBottom="16dp"
                     android:text="CATEGORY"
                     android:textColor="@android:color/background_dark"
                     android:textSize="22sp" />

@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface JokeRepository {
     fun getRandomJoke():Single<ModelJoke>
+    fun getRandomJokeByCategory(category:String):Single<ModelJoke>
 }

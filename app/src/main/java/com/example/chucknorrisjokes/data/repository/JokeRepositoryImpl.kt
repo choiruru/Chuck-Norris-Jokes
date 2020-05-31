@@ -15,4 +15,9 @@ class JokeRepositoryImpl @Inject constructor(
         return service.getRandomJoke()
             .compose(ErrorNetworkHandler())
     }
+
+    override fun getRandomJokeByCategory(category:String): Single<ModelJoke> {
+        return service.getRandomJokeByCategory(category)
+            .compose(ErrorNetworkHandler())
+    }
 }

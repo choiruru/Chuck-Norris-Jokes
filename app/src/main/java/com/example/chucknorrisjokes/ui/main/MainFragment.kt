@@ -8,8 +8,10 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chucknorrisjokes.BR
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentMainBinding
@@ -22,8 +24,10 @@ import kotlinx.android.synthetic.main.lyt_offline.*
 import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
-class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainViewModel>(){
+class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainViewModel>(), MainCategoryAdapter.OnCategoryItemClickListener{
     private val TAG = "MainFragment"
+
+    private var category:String = ""
 
     override fun getViewModelClass(): Class<MainViewModel> {
         return MainViewModel::class.java
@@ -34,17 +38,40 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
     }
 
     override fun onViewReady(savedInstance: Bundle?) {
-        viewModel.getRandomJoke()
+        initRecyclerview()
+
+        viewModel.start()
         binding.setVariable(BR.data, viewModel)
         btnShare.setOnClickListener {
             shareImage(lytShare)
         }
         btnRetry.setOnClickListener {
-            viewModel.getRandomJoke()
+            viewModel.start()
         }
 
-        (activity as MainActivity).setSupportActionBar(toolbar);
+        (activity as MainActivity).setSupportActionBar(toolbar)
+        (activity as MainActivity).title = "RANDOM"
     }
+
+    private fun initRecyclerview(){
+        val adapter = MainCategoryAdapter(viewModel.category,this)
+
+        rvCategory.layoutManager = LinearLayoutManager(requireContext())
+        rvCategory.setHasFixedSize(true)
+        rvCategory.adapter = adapter
+    }
+
+    override fun onCategoryItemClick(value: String) {
+        (activity as MainActivity).title = value.toUpperCase()
+        if(value.equals("random", true)){
+            viewModel.getRandomJoke()
+        }else{
+            viewModel.getRandomJokeByCategory(value)
+        }
+
+        binding.motionBase.transitionToStart()
+    }
+
     private fun shareImage(view:View){
         val bitmap:Bitmap = getBitmapFromView(view)
         val shareIntent = Intent()

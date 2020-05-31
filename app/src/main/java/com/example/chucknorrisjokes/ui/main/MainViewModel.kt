@@ -1,30 +1,40 @@
 package com.example.chucknorrisjokes.ui.main
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chucknorrisjokes.data.remote.model.ModelJoke
+import com.example.chucknorrisjokes.domain.repository.CategoryRepository
 import com.example.chucknorrisjokes.domain.repository.JokeRepository
 import com.example.chucknorrisjokes.domain.utils.SchedulerProvider
 import com.example.chucknorrisjokes.presentation.base.BaseViewModel
 import com.example.chucknorrisjokes.presentation.exception.NetworkState
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.random.Random
 
 class MainViewModel @Inject constructor(
-    private val repository: JokeRepository,
+    private val jokeRepository: JokeRepository,
+    private val categoryRepository: CategoryRepository,
     private val schedulers: SchedulerProvider
 ): BaseViewModel() {
     private val TAG = "MainViewModel"
-    val joke = MutableLiveData<ModelJoke>()
+
+    private val _joke = MutableLiveData<ModelJoke>()
+    val joke: LiveData<ModelJoke> get() = _joke
+
+    private val _categories = MutableLiveData<MutableList<String>>()
+    val category: LiveData<MutableList<String>> get() = _categories
 
     fun getRandomJoke(){
         networkState(NetworkState.LOADING)
-        lastDisposable = repository.getRandomJoke()
+        lastDisposable = jokeRepository.getRandomJoke()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe({
                 it.color = Random.nextInt(9)
-                joke.postValue(it)
+                _joke.postValue(it)
+
                 networkState(NetworkState.LOADED)
             }, {
                 handleError(it)
@@ -32,5 +42,46 @@ class MainViewModel @Inject constructor(
 
         lastDisposable?.let { compositeDisposable.add(it) }
 
+    }
+
+    fun getRandomJokeByCategory(category:String){
+        networkState(NetworkState.LOADING)
+        lastDisposable = jokeRepository.getRandomJokeByCategory(category)
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+            .subscribe({
+                it.color = Random.nextInt(9)
+                _joke.postValue(it)
+
+                networkState(NetworkState.LOADED)
+            }, {
+                handleError(it)
+            })
+
+        lastDisposable?.let { compositeDisposable.add(it) }
+
+    }
+
+    fun start(){
+        if(category.value==null){
+            networkState(NetworkState.LOADING)
+            lastDisposable = categoryRepository.getCategories()
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe({
+                    it.add(0,"random")
+                    _categories.postValue(it)
+
+                    if(joke.value == null){
+                        getRandomJoke()
+                    }else{
+                        networkState(NetworkState.LOADED)
+                    }
+                },{
+                    handleError(it)
+                })
+        }else{
+            getRandomJoke()
+        }
     }
 }

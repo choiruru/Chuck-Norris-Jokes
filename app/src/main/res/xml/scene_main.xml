@@ -234,7 +234,7 @@
     <Transition
         app:constraintSetStart="@id/start"
         app:constraintSetEnd="@id/end"
-        app:duration="100">
+        app:duration="500">
 
         <OnSwipe app:touchAnchorSide="top"
             app:dragDirection="dragUp"/>
