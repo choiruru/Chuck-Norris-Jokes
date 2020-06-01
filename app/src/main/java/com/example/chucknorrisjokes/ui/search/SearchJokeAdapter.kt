@@ -38,6 +38,7 @@ class SearchJokeAdapter @Inject constructor(
     override fun onBindViewHolder(holder: JokeViewHolder, position: Int) {
         holder.binding.modelJoke = models.value!![position]
         holder.binding.lytRoot.setOnClickListener {
+            Log.d(TAG, "CLICK: "+models.value!![position]);
             onItemClick.onJokeItemClick(models.value!![position])
         }
     }

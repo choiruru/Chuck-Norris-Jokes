@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.chucknorrisjokes.presentation.exception.Status"/>
+        <variable
+            name="networkState"
+            type="com.example.chucknorrisjokes.presentation.exception.NetworkState" />
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{networkState.status==Status.LOADING?View.VISIBLE:View.GONE}"
+            android:padding="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="@{networkState.status==Status.SUCCESS?View.VISIBLE:View.INVISIBLE}">
+
+            <Button
+                android:id="@+id/btnShare"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_round"
+                android:text="@string/share_this_joke"
+                android:foreground="?attr/selectableItemBackground"/>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/i_want_another_joke"
+                android:background="@drawable/btn_round"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

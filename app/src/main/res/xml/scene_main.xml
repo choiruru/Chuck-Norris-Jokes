@@ -85,7 +85,7 @@
         </Constraint>
 
         <Constraint
-            android:id="@+id/mainLayout"
+            android:id="@+id/spacer"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/content_layout"
@@ -106,7 +106,7 @@
             android:id="@+id/title_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/mainLayout"
+            app:layout_constraintBottom_toBottomOf="@id/spacer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center_vertical"
@@ -204,7 +204,7 @@
             app:layout_constraintHeight_percent="0.21"/>
 
         <Constraint
-            android:id="@+id/mainLayout"
+            android:id="@+id/spacer"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/content_layout"

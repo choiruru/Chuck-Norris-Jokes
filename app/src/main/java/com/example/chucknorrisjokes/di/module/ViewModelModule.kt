@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.chucknorrisjokes.di.module.factory.ViewModelFactory
 import com.example.chucknorrisjokes.di.scope.ApplicationScope
 import com.example.chucknorrisjokes.di.scope.ViewModelKey
+import com.example.chucknorrisjokes.ui.detail.DetailViewModel
 import com.example.chucknorrisjokes.ui.main.MainViewModel
 import com.example.chucknorrisjokes.ui.search.SearchViewModel
 import com.example.chucknorrisjokes.ui.splash.SplashViewModel
@@ -33,5 +34,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     internal abstract fun providesSearchViewModel(viewModel: SearchViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    internal abstract fun providesDetailViewModel(viewModel: DetailViewModel) : ViewModel
 
 }

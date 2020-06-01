@@ -2,11 +2,16 @@ package com.example.chucknorrisjokes.ui.search
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +22,10 @@ import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.data.remote.model.ModelJoke
 import com.example.chucknorrisjokes.databinding.ActivitySearchBinding
 import com.example.chucknorrisjokes.presentation.base.BaseActivity
+import com.example.chucknorrisjokes.presentation.customview.SpacesItemDecoration
+import com.example.chucknorrisjokes.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.item_joke.*
 import kotlinx.android.synthetic.main.lyt_offline.view.*
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>(), SearchJokeAdapter.OnJokeItemClickListener {
@@ -46,6 +54,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(), SearchJokeAdapter.
         adapter = SearchJokeAdapter(viewModel.jokes,this)
 
         rvJokes.layoutManager = LinearLayoutManager(this)
+        rvJokes.addItemDecoration(SpacesItemDecoration(0F,0F,6F,0F))
         rvJokes.adapter = adapter
     }
 
@@ -79,6 +88,14 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(), SearchJokeAdapter.
     }
 
     override fun onJokeItemClick(value: ModelJoke) {
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+            Pair<View, String>(txtItemJoke, ViewCompat.getTransitionName(txtItemJoke))
+        ).toBundle()
 
+        val intent = Intent(this,
+            DetailActivity::class.java).apply {
+            putExtra("model", value)
+        }
+        startActivity(intent, options)
     }
 }

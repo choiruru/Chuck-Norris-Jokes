@@ -16,6 +16,7 @@
         android:background="?attr/selectableItemBackground">
 
         <TextView
+            android:id="@+id/txtItemJoke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="24dp"
@@ -25,11 +26,8 @@
             android:textSize="18sp"
             android:textColor="@color/white"
             android:text="@{modelJoke.value}"
-            lyt_color="@{modelJoke.color}"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/white"/>
+            lyt_color="@{modelJoke.color}"
+            android:transitionName="@string/transtion_card_joke"/>
 
     </LinearLayout>
 </layout>

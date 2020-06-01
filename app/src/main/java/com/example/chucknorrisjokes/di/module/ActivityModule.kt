@@ -1,5 +1,6 @@
 package com.example.chucknorrisjokes.di.module
 
+import com.example.chucknorrisjokes.ui.detail.DetailActivity
 import com.example.chucknorrisjokes.ui.main.MainActivity
 import com.example.chucknorrisjokes.ui.search.SearchActivity
 import com.example.chucknorrisjokes.ui.splash.SplashActivity
@@ -17,4 +18,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSearchActivity():SearchActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeDetailActivity():DetailActivity
 }

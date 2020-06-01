@@ -149,7 +149,7 @@
                 app:layout_constraintBottom_toTopOf="@id/lytButton"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mainLayout"
+                android:id="@+id/spacer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/content_layout"
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/title_layout_bg_collapse"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@id/mainLayout"
+                app:layout_constraintBottom_toBottomOf="@id/spacer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">

@@ -16,11 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/lyt_joke_share"
-            android:visibility="invisible"
-            app:bgColor="@{data.joke.color}"
-            app:textJoke="@{data.joke.value}"/>
-
         <include
             android:id="@+id/lytOffline"
             layout="@layout/lyt_offline"
@@ -33,6 +28,20 @@
             android:layout_height="match_parent"
             app:layoutDescription="@xml/scene_main"
             android:visibility="@{data.networkState.status == Status.FAILED?View.GONE:View.VISIBLE}">
+
+            <include
+                android:id="@+id/ignoreThisLayout"
+                layout="@layout/lyt_joke_share"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.45"
+                app:bgColor="@{data.joke.color}"
+                app:textJoke="@{data.joke.value}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -47,47 +56,13 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <FrameLayout
+            <include
                 android:id="@+id/lytButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                layout="@layout/lyt_content_button"
                 app:layout_constraintTop_toBottomOf="@id/cardJoke"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="@{data.networkState.status==Status.LOADING?View.VISIBLE:View.GONE}"
-                    android:padding="16dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:visibility="@{data.networkState.status==Status.SUCCESS?View.VISIBLE:View.INVISIBLE}">
-
-                    <Button
-                        android:id="@+id/btnShare"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/btn_round"
-                        android:text="@string/share_this_joke"
-                        android:foreground="?attr/selectableItemBackground"/>
-
-                    <Button
-                        android:id="@+id/btnNext"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:text="@string/i_want_another_joke"
-                        android:onClick="@{()->data.getRandomJoke()}"
-                        android:background="@drawable/btn_round"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:layout_marginTop="8dp"/>
-
-                </LinearLayout>
-            </FrameLayout>
+                app:layout_constraintRight_toRightOf="parent"
+                app:networkState="@{data.networkState}"/>
 
             <ImageView
                 android:id="@+id/imgLogo"
@@ -143,16 +118,14 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/lytButton"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mainLayout"
+            <View
+                android:id="@+id/spacer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/content_layout"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lytButton">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@id/lytButton"/>
 
             <LinearLayout
                 android:id="@+id/content_layout"
@@ -175,7 +148,7 @@
                 android:id="@+id/title_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/mainLayout"
+                app:layout_constraintBottom_toBottomOf="@id/spacer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -206,7 +179,8 @@
                 android:src="@drawable/ic_baseline_double_arrow"
                 android:tint="@android:color/background_dark"
                 android:elevation="3dp"
-                android:layout_marginRight="32dp"/>
+                android:layout_marginRight="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </FrameLayout>
