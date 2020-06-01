@@ -109,8 +109,7 @@
             app:layout_constraintBottom_toBottomOf="@id/spacer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center_vertical"
-            app:visibilityMode="ignore">
+            android:gravity="center_vertical">
 
             <CustomAttribute
                 app:attributeName="round_top_left"
@@ -228,8 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/cardJoke"
-            android:gravity="center_vertical"
-            app:visibilityMode="ignore">
+            android:gravity="center_vertical">
 
             <CustomAttribute
                 app:attributeName="round_top_left"
@@ -252,9 +250,7 @@
             android:layout_marginRight="32dp"/>
     </ConstraintSet>
 
-
-
-
+    
 <!--======================================TRANSITION=============================================-->
     <Transition
         app:constraintSetStart="@id/start"
