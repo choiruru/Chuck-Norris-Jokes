@@ -25,7 +25,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(){
     }
 
     override fun onViewReady(savedInstance: Bundle?) {
-        window.sharedElementEnterTransition = TransitionInflater.from(this).inflateTransition(R.transition.shared_element_transation)
+        window.sharedElementEnterTransition = TransitionInflater.from(this).inflateTransition(android.R.transition.move)
         initViewModel()
 
         val model : ModelJoke = intent.getParcelableExtra("model")

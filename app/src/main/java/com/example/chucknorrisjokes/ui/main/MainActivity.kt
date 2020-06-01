@@ -9,19 +9,11 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    @Inject
-    lateinit var mainFragment: MainFragment
-
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
 
     override fun onViewReady(savedInstance: Bundle?) {
-        if(savedInstance==null){
-            supportFragmentManager.findFragmentById(R.id.fragment_container)
-                    as MainFragment??:mainFragment.also {
-                addFragmentToActivity(it, R.id.fragment_container)
-            }
-        }
+
     }
 }

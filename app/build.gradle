@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
 
 androidExtensions {
     experimental = true
@@ -36,6 +37,9 @@ android {
         // viewBinding = true
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -63,20 +67,19 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "androidx.annotation:annotation:$androidXAnnotations"
-//    implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
     implementation "androidx.constraintlayout:constraintlayout:$constrainVersion"
 
     // Paging
 //    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
-    // Navigation Dependencies
-//    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-//    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+//     Navigation Dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:2.2.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.2.2"
 
     // MVVM and LiveData Dependencies
-//    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
-//    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
 
     // Network Dependencies
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

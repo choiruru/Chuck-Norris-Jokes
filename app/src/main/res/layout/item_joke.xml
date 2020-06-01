@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,13 +8,15 @@
             type="com.example.chucknorrisjokes.data.remote.model.ModelJoke" />
     </data>
 
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/lytRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="?attr/selectableItemBackground">
+        android:transitionName="@string/transtion_card_joke"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        lyt_color="@{modelJoke.color}">
 
         <TextView
             android:id="@+id/txtItemJoke"
@@ -25,9 +28,7 @@
             android:paddingBottom="16dp"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:text="@{modelJoke.value}"
-            lyt_color="@{modelJoke.color}"
-            android:transitionName="@string/transtion_card_joke"/>
+            android:text="@{modelJoke.value}"/>
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

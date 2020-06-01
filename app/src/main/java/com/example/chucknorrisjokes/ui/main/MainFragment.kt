@@ -3,6 +3,7 @@ package com.example.chucknorrisjokes.ui.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -10,13 +11,14 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
-import androidx.core.view.ViewCompat
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chucknorrisjokes.BR
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentMainBinding
 import com.example.chucknorrisjokes.presentation.base.BaseFragment
-import com.example.chucknorrisjokes.ui.search.SearchActivity
+import com.example.chucknorrisjokes.ui.search.SearchFragment
 import com.example.chucknorrisjokes.utils.ShareImage
 import kotlinx.android.synthetic.main.fragment_main.toolbar
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -44,6 +46,7 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onViewReady(savedInstance: Bundle?) {
@@ -82,16 +85,27 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.action_search->{
+                val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
                 val searchMenuView: View = toolbar.findViewById(R.id.action_search)
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),
-                    Pair<View, String>(searchMenuView, getString(R.string.transition_search_back))
-                ).toBundle()
+                findNavController()
+                    .navigate(action,
+                    FragmentNavigator.Extras.Builder()
+                        .addSharedElement(
+                            searchMenuView, getString(R.string.transition_search_back)
+                        ).build())
 
-                val intent = Intent(requireContext(),
-                    SearchActivity::class.java).apply {
-                    action = Intent.ACTION_SEARCH
-                }
-                startActivity(intent, options)
+//                val action = MainFrag.actionDashBoardFragmentToDetailFragment(item)
+
+//                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
+//                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),
+//                    Pair<View, String>(searchMenuView, getString(R.string.transition_search_back))
+//                ).toBundle()
+//
+//                val intent = Intent(requireContext(),
+//                    SearchFragment::class.java).apply {
+//                    action = Intent.ACTION_SEARCH
+//                }
+//                startActivity(intent, options)
             }
         }
         return super.onOptionsItemSelected(item)
