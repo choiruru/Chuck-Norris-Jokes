@@ -122,27 +122,20 @@
                 android:id="@+id/spacer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/content_layout"
+                app:layout_constraintBottom_toTopOf="@id/rvCategory"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lytButton"/>
 
-            <LinearLayout
-                android:id="@+id/content_layout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="0dp"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    android:nestedScrollingEnabled="true"/>
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="parent"/>
 
             <com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout
                 android:id="@+id/title_layout"
