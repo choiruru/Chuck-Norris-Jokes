@@ -24,8 +24,8 @@ class SearchViewModel @Inject constructor(
         get() = _dataStatus
 
     fun searchJokes(query:String){
+        networkState(NetworkState.LOADING)
         if(query.length>2){
-            networkState(NetworkState.LOADING)
             disposeLast()
             lastDisposable = jokeRepository.searchJokes(query)
                 .subscribeOn(schedulers.io())
@@ -47,8 +47,6 @@ class SearchViewModel @Inject constructor(
                 })
 
             lastDisposable?.let { compositeDisposable.add(it) }
-        }else{
-            networkState(NetworkState.LOADING)
         }
     }
 }

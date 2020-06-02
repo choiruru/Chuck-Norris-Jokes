@@ -12,9 +12,8 @@ import dagger.android.support.DaggerApplication
 
 @ApplicationScope
 @Component(modules = [
-    ActivityModule::class,
-    FragmentModule::class,
     AppModule::class,
+    ActivityModule::class,
     NetworkModule::class,
     RepositoryModule::class,
     ViewModelModule::class,

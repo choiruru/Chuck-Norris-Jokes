@@ -25,7 +25,11 @@ class MainViewModel @Inject constructor(
     private val _categories = MutableLiveData<MutableList<String>>()
     val category: LiveData<MutableList<String>> get() = _categories
 
+    private val _title = MutableLiveData<String>()
+    val title: LiveData<String> get() = _title
+
     fun getRandomJoke(){
+        _title.postValue("RANDOM")
         networkState(NetworkState.LOADING)
         lastDisposable = jokeRepository.getRandomJoke()
             .subscribeOn(schedulers.io())
@@ -44,21 +48,25 @@ class MainViewModel @Inject constructor(
     }
 
     fun getRandomJokeByCategory(category:String){
-        networkState(NetworkState.LOADING)
-        lastDisposable = jokeRepository.getRandomJokeByCategory(category)
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
-            .subscribe({
-                it.color = Random.nextInt(9)
-                _joke.postValue(it)
+        if(category.equals("random", true)){
+            getRandomJoke()
+        }else{
+            _title.postValue(category.toUpperCase())
+            networkState(NetworkState.LOADING)
+            lastDisposable = jokeRepository.getRandomJokeByCategory(category)
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe({
+                    it.color = Random.nextInt(9)
+                    _joke.postValue(it)
 
-                networkState(NetworkState.LOADED)
-            }, {
-                handleError(it)
-            })
+                    networkState(NetworkState.LOADED)
+                }, {
+                    handleError(it)
+                })
 
-        lastDisposable?.let { compositeDisposable.add(it) }
-
+            lastDisposable?.let { compositeDisposable.add(it) }
+        }
     }
 
     fun start(){

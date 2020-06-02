@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chucknorrisjokes.BR
@@ -22,6 +20,7 @@ import com.example.chucknorrisjokes.ui.search.SearchFragment
 import com.example.chucknorrisjokes.utils.ShareImage
 import kotlinx.android.synthetic.main.fragment_main.toolbar
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import kotlinx.android.synthetic.main.lyt_content_button.view.*
 import kotlinx.android.synthetic.main.lyt_joke_share.*
 import kotlinx.android.synthetic.main.lyt_offline.view.*
@@ -32,8 +31,6 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
 
     private val TAG = "MainFragment"
 
-    private var category:String = ""
-
     override fun getViewModelClass(): Class<MainViewModel> {
         return MainViewModel::class.java
     }
@@ -42,18 +39,14 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
         return R.layout.fragment_main
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setHasOptionsMenu(true)
-        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-    }
-
     override fun onViewReady(savedInstance: Bundle?) {
+        sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         initRecyclerview()
 
-        viewModel.start()
-        binding.setVariable(BR.data, viewModel)
+        if(!isFragmentFromPaused){
+            viewModel.start()
+        }
+        binding.setVariable(BR.viewModel, viewModel)
 
         lytButton.btnShare.setOnClickListener {
             ShareImage.share(lytShare, requireContext())
@@ -72,43 +65,17 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
             }
         }
 
-        (activity as MainActivity).setSupportActionBar(toolbar)
-        (activity as MainActivity).title = "RANDOM"
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.search_menu, menu)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.action_search->{
-                val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
-                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
-                findNavController()
-                    .navigate(action,
+        binding.toolbar.actionSearch.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
+            findNavController()
+                .navigate(action,
                     FragmentNavigator.Extras.Builder()
                         .addSharedElement(
-                            searchMenuView, getString(R.string.transition_search_back)
+                            it, getString(R.string.transition_search_back)
                         ).build())
-
-//                val action = MainFrag.actionDashBoardFragmentToDetailFragment(item)
-
-//                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
-//                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),
-//                    Pair<View, String>(searchMenuView, getString(R.string.transition_search_back))
-//                ).toBundle()
-//
-//                val intent = Intent(requireContext(),
-//                    SearchFragment::class.java).apply {
-//                    action = Intent.ACTION_SEARCH
-//                }
-//                startActivity(intent, options)
-            }
         }
-        return super.onOptionsItemSelected(item)
+
+        waitForTransition(binding.toolbar.actionSearch)
     }
 
     private fun initRecyclerview(){
@@ -120,13 +87,7 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
     }
 
     override fun onCategoryItemClick(value: String) {
-        (activity as MainActivity).title = value.toUpperCase()
-        if(value.equals("random", true)){
-            viewModel.getRandomJoke()
-        }else{
-            viewModel.getRandomJokeByCategory(value)
-        }
-
+        viewModel.getRandomJokeByCategory(value)
         binding.motionBase.transitionToStart()
     }
 }
