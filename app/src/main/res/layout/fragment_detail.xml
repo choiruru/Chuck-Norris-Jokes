@@ -24,6 +24,7 @@
             app:layout_constraintHeight_percent="0.45"
             app:bgColor="@{viewModel.joke.color}"
             app:textJoke="@{viewModel.joke.value}"
+            app:idJoke="@{viewModel.joke.id}"
             app:layout_constraintBottom_toTopOf="@id/lytButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

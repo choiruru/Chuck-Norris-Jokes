@@ -25,8 +25,8 @@ class SearchViewModel @Inject constructor(
 
     fun searchJokes(query:String){
         networkState(NetworkState.LOADING)
+        disposeLast()
         if(query.length>2){
-            disposeLast()
             lastDisposable = jokeRepository.searchJokes(query)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())

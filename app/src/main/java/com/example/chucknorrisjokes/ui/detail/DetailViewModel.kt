@@ -13,7 +13,6 @@ import kotlin.random.Random
 
 class DetailViewModel @Inject constructor(
     private val jokeRepository: JokeRepository,
-    private val norrisApi: NorrisApi,
     private val schedulers: SchedulerProvider
 ):BaseViewModel(){
 

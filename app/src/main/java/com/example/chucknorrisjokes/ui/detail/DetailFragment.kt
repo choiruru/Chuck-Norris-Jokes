@@ -32,8 +32,6 @@ class DetailFragment @Inject constructor() : BaseFragment<FragmentDetailBinding,
         sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         initViewModel()
 
-        viewModel.setData(args.model)
-
         lytButton.btnNext.setOnClickListener {
             viewModel.getRandomJoke()
         }
@@ -45,9 +43,13 @@ class DetailFragment @Inject constructor() : BaseFragment<FragmentDetailBinding,
         }
 
         Log.d(TAG, "onViewReady: ");
+        waitForTransition(binding.content.lytShare)
+        waitForTransition(binding.content.textViewShare)
     }
 
     private fun initViewModel(){
-        binding.setVariable(BR.viewModel, viewModel)
+        binding.viewModel = viewModel
+        viewModel.setData(args.model)
+//        binding.setVariable(BR.viewModel, viewModel)
     }
 }

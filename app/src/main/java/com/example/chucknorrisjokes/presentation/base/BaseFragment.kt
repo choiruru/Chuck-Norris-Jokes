@@ -56,7 +56,7 @@ abstract class BaseFragment<B : ViewDataBinding, V : ViewModel> : Fragment() {
         Log.d(TAG, "onCreateView: ");
         mViewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mViewDataBinding.lifecycleOwner = this
-//        mViewDataBinding.executePendingBindings()
+        mViewDataBinding.executePendingBindings()
 
         super.onCreateView(inflater, container, savedInstanceState)
 

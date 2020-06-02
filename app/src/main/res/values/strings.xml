@@ -11,4 +11,5 @@
     <string name="search">Search</string>
     <string name="empty_message">Oops...\nlooks like the one you\'re looking for doesn\'t exist</string>
     <string name="transtion_card_joke">transtion_card_joke</string>
+    <string name="transition_item_joke_title">transition_item_joke_title</string>
 </resources>
