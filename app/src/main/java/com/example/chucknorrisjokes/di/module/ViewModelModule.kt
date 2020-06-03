@@ -6,6 +6,7 @@ import com.example.chucknorrisjokes.di.module.factory.ViewModelFactory
 import com.example.chucknorrisjokes.di.scope.ApplicationScope
 import com.example.chucknorrisjokes.di.scope.ViewModelKey
 import com.example.chucknorrisjokes.ui.detail.DetailViewModel
+import com.example.chucknorrisjokes.ui.detail_slider.SliderViewModel
 import com.example.chucknorrisjokes.ui.main.MainViewModel
 import com.example.chucknorrisjokes.ui.search.SearchViewModel
 import com.example.chucknorrisjokes.ui.splash.SplashViewModel
@@ -39,5 +40,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     internal abstract fun providesDetailViewModel(viewModel: DetailViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SliderViewModel::class)
+    internal abstract fun providesDetailSliderViewModel(viewModel: SliderViewModel) : ViewModel
 
 }

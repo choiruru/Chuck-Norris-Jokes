@@ -50,6 +50,5 @@ class DetailFragment @Inject constructor() : BaseFragment<FragmentDetailBinding,
     private fun initViewModel(){
         binding.viewModel = viewModel
         viewModel.setData(args.model)
-//        binding.setVariable(BR.viewModel, viewModel)
     }
 }

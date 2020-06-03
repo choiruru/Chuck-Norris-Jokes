@@ -94,6 +94,12 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
+    //slider
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+
+    //carousel
+    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
+
 //    // Dependencies for utility
 //    implementation "com.jakewharton.timber:timber:$timberVersion"
 //
@@ -111,4 +117,6 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$runnerVersion"
     androidTestImplementation "androidx.test:rules:$runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+
 }

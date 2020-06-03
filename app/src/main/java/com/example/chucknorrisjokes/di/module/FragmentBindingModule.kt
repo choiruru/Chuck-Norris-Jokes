@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentFactory
 import com.example.chucknorrisjokes.di.module.factory.InjectingFragmentFactory
 import com.example.chucknorrisjokes.di.scope.FragmentKey
 import com.example.chucknorrisjokes.ui.detail.DetailFragment
+import com.example.chucknorrisjokes.ui.detail_slider.DetailSliderFragment
 import com.example.chucknorrisjokes.ui.main.MainFragment
 import com.example.chucknorrisjokes.ui.search.SearchFragment
 import dagger.Binds
@@ -28,6 +29,11 @@ abstract class FragmentBindingModule {
     @IntoMap
     @FragmentKey(DetailFragment::class)
     abstract fun bindDetailFragment(detailFragment: DetailFragment): Fragment
+
+    @Binds
+    @IntoMap
+    @FragmentKey(DetailSliderFragment::class)
+    abstract fun bindDetailSliderFragment(detailSliderFragment: DetailSliderFragment): Fragment
 
     @Binds
     abstract fun bindFragmentFactory(factory: InjectingFragmentFactory): FragmentFactory

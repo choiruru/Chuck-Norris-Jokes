@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailSliderFragment"
+            app:destination="@id/detailSliderFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -30,5 +33,17 @@
         <argument
             android:name="model"
             app:argType="com.example.chucknorrisjokes.data.remote.model.ModelJoke" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSliderFragment"
+        android:name="com.example.chucknorrisjokes.ui.detail_slider.DetailSliderFragment"
+        android:label="detail_slider_fragment"
+        tools:layout="@layout/fragment_detail_slider" >
+        <argument
+            android:name="models"
+            app:argType="com.example.chucknorrisjokes.data.remote.model.ModelSearch" />
+        <argument
+            android:name="position"
+            app:argType="java.lang.Integer"/>
     </fragment>
 </navigation>
