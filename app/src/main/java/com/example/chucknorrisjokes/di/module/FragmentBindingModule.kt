@@ -8,12 +8,18 @@ import com.example.chucknorrisjokes.ui.detail.DetailFragment
 import com.example.chucknorrisjokes.ui.detail_slider.DetailSliderFragment
 import com.example.chucknorrisjokes.ui.main.MainFragment
 import com.example.chucknorrisjokes.ui.search.SearchFragment
+import com.example.chucknorrisjokes.ui.splash.SplashFragment
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
 abstract class FragmentBindingModule {
+
+    @Binds
+    @IntoMap
+    @FragmentKey(SplashFragment::class)
+    abstract fun bindSplashFragment(splashFragment: SplashFragment): Fragment
 
     @Binds
     @IntoMap

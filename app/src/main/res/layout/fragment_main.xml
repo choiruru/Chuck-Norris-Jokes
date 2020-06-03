@@ -106,7 +106,8 @@
                 app:layout_constraintBottom_toTopOf="@id/textView"
                 app:layout_constraintHeight_percent="0.1"
                 android:layout_marginTop="16dp"
-                android:elevation="1dp"/>
+                android:elevation="1dp"
+                android:transitionName="@string/transition_img_splash"/>
 
             <TextView
                 android:id="@+id/textView"

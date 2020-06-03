@@ -13,4 +13,5 @@
     <string name="transtion_card_joke">transtion_card_joke</string>
     <string name="transition_item_joke_title">transition_item_joke_title</string>
     <string name="title_detail_joke">Detail Joke</string>
+    <string name="transition_img_splash">imgSplash</string>
 </resources>

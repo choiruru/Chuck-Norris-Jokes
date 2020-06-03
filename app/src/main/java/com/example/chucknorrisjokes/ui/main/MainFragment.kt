@@ -41,6 +41,7 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
 
     override fun onViewReady(savedInstance: Bundle?) {
         sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.splash_to_main)
         initRecyclerview()
 
         if(!isFragmentFromPaused){
@@ -76,6 +77,7 @@ class MainFragment @Inject constructor() :BaseFragment<FragmentMainBinding,MainV
         }
 
         waitForTransition(binding.toolbar.actionSearch)
+        waitForTransition(binding.imgLogo)
     }
 
     private fun initRecyclerview(){

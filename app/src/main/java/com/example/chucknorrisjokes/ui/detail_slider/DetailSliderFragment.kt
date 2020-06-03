@@ -2,6 +2,8 @@ package com.example.chucknorrisjokes.ui.detail_slider
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
@@ -38,6 +40,11 @@ class DetailSliderFragment @Inject constructor() : BaseFragment<FragmentDetailSl
         binding.btnShare.setOnClickListener {
             val view = binding.rvJokes.findViewHolderForAdapterPosition(layoutManager.centerItemPosition)!!.itemView
             ShareImage.share(view.findViewById(R.id.lytRoot), requireContext())
+        }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            requireActivity().onBackPressed()
+            true
         }
     }
 
