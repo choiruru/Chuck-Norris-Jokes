@@ -187,13 +187,12 @@
                     android:paddingTop="16dp"
                     android:paddingLeft="32dp"
                     android:paddingBottom="16dp"
-                    android:text="SELECT CATEGORY"
+                    android:text="@string/select_category"
                     android:textColor="@android:color/background_dark"
                     android:textSize="20sp" />
             </com.example.chucknorrisjokes.presentation.customview.RoundLinearLayout>
 
-
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgSwipeArrow"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

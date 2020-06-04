@@ -44,5 +44,5 @@ class MainCategoryAdapter @Inject constructor(
         fun onCategoryItemClick(value:String)
     }
 
-    inner class CategoryViewHolder(var binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
+    class CategoryViewHolder(var binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
 }

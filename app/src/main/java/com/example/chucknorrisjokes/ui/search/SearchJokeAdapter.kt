@@ -52,7 +52,7 @@ class SearchJokeAdapter @Inject constructor(
         fun onJokeItemClick(position:Int, value:ModelJoke, cardView: CardView, textView: TextView)
     }
 
-    inner class JokeViewHolder(var binding: ItemJokeBinding) : RecyclerView.ViewHolder(binding.root){
+    class JokeViewHolder(var binding: ItemJokeBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: ModelJoke) {
             binding.modelJoke = item
             binding.executePendingBindings()

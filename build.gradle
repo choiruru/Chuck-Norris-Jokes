@@ -16,18 +16,18 @@ buildscript {
         androidXVersion = '1.0.0'
         appCompatVersion = '1.1.0'
         archLifecycleVersion = '2.2.0'
-        archTestingVersion = "2.0.0"
+        archTestingVersion = "2.1.0"
         browserVersion = "1.2.0"
         cardVersion = '1.0.0'
         circleImgVersion = '3.0.1'
         coilVersion = '0.8.0'
         constrainVersion = '2.0.0-beta6'
         daggerVersion = '2.27'
-        espressoVersion = "3.1.1"
+        espressoVersion = "3.2.0"
         flexBoxVersion = "2.0.1"
         glideVersion = "4.11.0"
         indicatorVersion = "4.1.2"
-        jUnitVersion = "1.1.0"
+        junitVersion = "4.13"
         koinVersion = "2.0.1"
         materialVersion = '1.1.0'
         mockitoVersion = "2.23.4"
@@ -40,13 +40,15 @@ buildscript {
         recyclerViewVersion = '1.1.0'
         retrofitVersion = "2.5.0"
         roomVersion = '2.2.2'
-        runnerVersion = "1.1.1"
+        runnerVersion = "1.2.0"
         rxAndroidVersion = "2.1.1"
         rxKotlinVersion = "2.3.0"
         safeargsVersion = "1.0.0"
         shimmerVersion = "0.5.0"
         timberVersion = "4.7.1"
         timeVersion = "2.10"
+        rulesVersion = '1.2.0'
+        guavaVersion = '24.1-jre'
     }
     repositories {
         google()
@@ -69,6 +71,9 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
 

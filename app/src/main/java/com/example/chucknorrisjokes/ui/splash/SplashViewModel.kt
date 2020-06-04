@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.chucknorrisjokes.presentation.base.BaseViewModel
 import com.example.chucknorrisjokes.presentation.base.SingleEvents
+import com.example.chucknorrisjokes.utils.EspressoIdlingResource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -22,7 +23,13 @@ class SplashViewModel @Inject constructor(): BaseViewModel() {
 
     fun countSplash(){
         disposable = Observable.timer(1, TimeUnit.SECONDS)
+            .doOnSubscribe { EspressoIdlingResource.increment() }
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally {
+                if(!EspressoIdlingResource.getIdlingResource().isIdleNow){
+                    EspressoIdlingResource.decrement()
+                }
+            }
             .subscribe{
                 _complete.value = SingleEvents(true)
             }

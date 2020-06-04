@@ -258,7 +258,8 @@
         app:duration="500">
 
         <OnSwipe app:touchAnchorSide="top"
-            app:dragDirection="dragUp"/>
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/title_layout"/>
 
     </Transition>
 

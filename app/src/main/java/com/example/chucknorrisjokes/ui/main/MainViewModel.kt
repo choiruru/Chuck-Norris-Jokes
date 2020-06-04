@@ -9,6 +9,7 @@ import com.example.chucknorrisjokes.domain.repository.JokeRepository
 import com.example.chucknorrisjokes.domain.utils.SchedulerProvider
 import com.example.chucknorrisjokes.presentation.base.BaseViewModel
 import com.example.chucknorrisjokes.presentation.exception.NetworkState
+import com.example.chucknorrisjokes.utils.EspressoIdlingResource
 import javax.inject.Inject
 import kotlin.random.Random
 

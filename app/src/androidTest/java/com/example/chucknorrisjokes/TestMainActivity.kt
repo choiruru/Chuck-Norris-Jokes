@@ -1,87 +1,71 @@
 package com.example.chucknorrisjokes
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.example.chucknorrisjokes.ui.main.MainActivity
+import com.example.chucknorrisjokes.ui.main.MainCategoryAdapter
+import com.example.chucknorrisjokes.ui.search.SearchJokeAdapter
+import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
+
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestMainActivity{
+class TestMainActivity : TestBase() {
 
     @Rule
     @JvmField
     val activityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun shouldBeAbleToLaunchMainScreen() {
-        onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
-        onView(withId(R.id.action_search)).check(matches(isDisplayed()))
-    }
+    fun testLaunchMainFragment(){
 
-//    @Test
-//    fun shouldBeAbleToLoadMovies() {
-//        onView(withId(R.id.list)).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToScrollViewMovieDetails() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withText(R.string.summary)).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToDisplayTrailerLabel() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withText(R.string.trailers)).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToDisplayCastLabel() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withText(R.string.cast)).perform(nestedScrollTo()).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToDisplayCast() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withId(R.id.cast_list)).perform(nestedScrollTo()).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToDisplayPersonDetail() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withId(R.id.cast_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<CastAdapter.CastViewHolder>(2, click()))
-//        onView(withText(R.string.biography)).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToChangeTabAndViewDetails() {
-//        onView(withId(R.id.action_upcoming)).perform(click())
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-//        onView(withText(R.string.summary)).check(matches(isDisplayed()))
-//    }
-//
-//    @Test
-//    fun shouldBeAbleToSearchItem() {
-//        onView(withId(R.id.action_search)).perform(click())
-//        onView(isAssignableFrom(EditText::class.java))
-//                .perform(typeText("Ironman"),
-//                        pressImeActionButton())
-//        onView(withId(R.id.list)).check(matches(isDisplayed()))
-//    }
+        //check main Fragment visible
+        onView(withId(R.id.motion_base)).check(matches(isDisplayed()))
+
+        //click button (I WANT ANOTHER JOKE)
+        onView(withId(R.id.btnNext)).perform(click())
+
+        //swipe up category
+        onView(withId(R.id.motion_base)).perform(swipeUp())
+
+        //check list category visible
+        onView(allOf(withId(R.id.rvCategory))).check(matches(isDisplayed()))
+
+        //select category in list
+        onView(withId(R.id.rvCategory)).perform(RecyclerViewActions
+            .actionOnItemAtPosition<MainCategoryAdapter.CategoryViewHolder>(2, click()))
+
+        //click search icon
+        onView(withId(R.id.actionSearch)).perform(click())
+
+        //type in searchView
+        onView(withId(R.id.searchView)).perform(click())
+        onView(withId(R.id.searchView)).perform(typeText("sun"))
+
+        //select joke in list and goto detail joke
+        onView(withId(R.id.rvJokes)).check(matches(isDisplayed()))
+        onView(withId(R.id.rvJokes)).perform(RecyclerViewActions
+            .actionOnItemAtPosition<SearchJokeAdapter.JokeViewHolder>(2, click()))
+
+        //back to search fragment
+        pressBack()
+
+        //back to main fragment
+        pressBack()
+
+        //click button (SHARE THIS JOKE)
+        onView(withId(R.id.btnShare)).perform(click())
+
+    }
 }

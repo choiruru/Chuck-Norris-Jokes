@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.*
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.navigation.fragment.FragmentNavigator
@@ -17,6 +18,7 @@ import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentMainBinding
 import com.example.chucknorrisjokes.presentation.base.BaseFragment
 import com.example.chucknorrisjokes.ui.search.SearchFragment
+import com.example.chucknorrisjokes.utils.EspressoIdlingResource
 import com.example.chucknorrisjokes.utils.ShareImage
 import kotlinx.android.synthetic.main.fragment_main.toolbar
 import kotlinx.android.synthetic.main.fragment_main.*

@@ -20,7 +20,7 @@ abstract class BaseFragment<B : ViewDataBinding, V : ViewModel> : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var mViewDataBinding: B
-    private lateinit var mViewModel: V
+    lateinit var mViewModel: V
 
     val binding: B get() = mViewDataBinding
     val viewModel: V get() = mViewModel

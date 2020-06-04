@@ -5,8 +5,12 @@ import androidx.lifecycle.*
 import com.example.chucknorrisjokes.data.remote.base.Failure
 import com.example.chucknorrisjokes.data.remote.base.StatusCode
 import com.example.chucknorrisjokes.presentation.exception.NetworkState
+import com.example.chucknorrisjokes.utils.EspressoIdlingResource
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 
 abstract class BaseViewModel : ViewModel() {
@@ -19,6 +23,16 @@ abstract class BaseViewModel : ViewModel() {
     val networkState: LiveData<NetworkState> get() = _networkState
 
     val compositeDisposable = CompositeDisposable()
+
+    protected fun <T> composeObservable(task: () -> Observable<T>): Observable<T> = task()
+        .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doFinally {
+            if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                EspressoIdlingResource.decrement() // Set app as idle.
+            }
+        }
 
     /**
      * unsubscribe last subscription rxJava

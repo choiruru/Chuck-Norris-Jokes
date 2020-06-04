@@ -79,7 +79,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="splasFragment">
+                  <entry key="splashFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -90,7 +90,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainFragment_to_searchFragment">
+                            <entry key="action_to_mainFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
