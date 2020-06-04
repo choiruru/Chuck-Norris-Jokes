@@ -34,12 +34,10 @@ public class EspressoIdlingResource {
 
     public static void increment() {
         mCountingIdlingResource.increment();
-        Log.d(TAG, "increment: "+mCountingIdlingResource.getCounter());
     }
 
     public static void decrement() {
         mCountingIdlingResource.decrement();
-        Log.d(TAG, "decrement: "+mCountingIdlingResource.getCounter());
     }
 
     public static IdlingResource getIdlingResource() {

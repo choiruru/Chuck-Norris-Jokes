@@ -13,7 +13,7 @@ object ErrorApiHandler {
      */
     fun handleErrorOnNext(e: Throwable): Failure {
         return if (e is HttpException) {
-            val responseBody = e.response().errorBody()
+            val responseBody = e.response()!!.errorBody()
             Failure(e.code(), getErrorMessage(responseBody))
         } else {
             Failure(StatusCode.UNKNOWN_ERROR, "Something wrong")

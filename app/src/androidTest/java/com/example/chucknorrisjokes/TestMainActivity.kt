@@ -18,7 +18,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
+/***
+ * before test, make sure to disable animation
+ *
+ * enable developer mode
+ * go to Developer Option
+ * - disable Window animation scale
+ * - disable Transition animation scale
+ * - disable ANimator duration scale
+ */
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class TestMainActivity : TestBase() {
