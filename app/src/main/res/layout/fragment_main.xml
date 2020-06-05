@@ -194,15 +194,16 @@
 
             <ImageButton
                 android:id="@+id/imgSwipeArrow"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/title_layout"
                 app:layout_constraintBottom_toBottomOf="@id/title_layout"
                 app:layout_constraintRight_toRightOf="parent"
                 android:src="@drawable/ic_baseline_double_arrow"
                 android:tint="@android:color/background_dark"
                 android:elevation="3dp"
-                android:layout_marginRight="32dp"
+                android:padding="12dp"
+                android:layout_marginRight="10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
