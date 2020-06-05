@@ -11,38 +11,20 @@ import javax.inject.Inject
 
 class JokeRepositoryImpl @Inject constructor(
     private val service: NorrisApi
-) : JokeRepository {
+) : JokeRepository , BaseRepository(){
 
     override fun getRandomJoke(): Single<ModelJoke> {
-        return service.getRandomJoke()
-            .doOnSubscribe { EspressoIdlingResource.increment()  }
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-            }
+        return composeSingle { service.getRandomJoke() }
             .compose(ErrorNetworkHandler())
     }
 
     override fun getRandomJokeByCategory(category:String): Single<ModelJoke> {
-        return service.getRandomJokeByCategory(category)
-            .doOnSubscribe { EspressoIdlingResource.increment()  }
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-            }
+        return composeSingle { service.getRandomJokeByCategory(category) }
             .compose(ErrorNetworkHandler())
     }
 
     override fun searchJokes(query: String): Single<ModelSearch> {
-        return service.searchJokes(query)
-            .doOnSubscribe { EspressoIdlingResource.increment()  }
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-            }
+        return composeSingle { service.searchJokes(query) }
             .compose(ErrorNetworkHandler())
     }
 }

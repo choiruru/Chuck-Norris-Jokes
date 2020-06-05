@@ -9,15 +9,9 @@ import javax.inject.Inject
 
 class CategoryRepositoryImpl @Inject constructor(
     private val norrisApi: NorrisApi
-):CategoryRepository{
+):CategoryRepository, BaseRepository(){
     override fun getCategories(): Single<MutableList<String>> {
-        return norrisApi.getCategories()
-            .doOnSubscribe { EspressoIdlingResource.increment()  }
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-            }
+        return composeSingle { norrisApi.getCategories() }
             .compose(ErrorNetworkHandler())
     }
 
