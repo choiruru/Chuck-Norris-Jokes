@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
@@ -59,6 +60,8 @@ class DetailSliderFragment @Inject constructor() : BaseFragment<FragmentDetailSl
         binding.rvJokes.adapter = adapter
         binding.rvJokes.addOnScrollListener(CenterScrollListener());
 
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvJokes)
 
         binding.viewModel = viewModel
         viewModel.setData(args.models.result)
